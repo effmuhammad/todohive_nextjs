@@ -1,5 +1,5 @@
-import FooterText from "@/components/FooterText";
-import TodoHiveLogo from "@/components/TodoHiveLogo";
+import FooterText from "@/app/components/FooterText";
+import TodoHiveLogo from "@/app/components/TodoHiveLogo";
 import Image from "next/image";
 import Link from "next/link";
 

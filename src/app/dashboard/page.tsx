@@ -1,4 +1,4 @@
-import TodoHiveLogo from "@/components/TodoHiveLogo";
+import TodoHiveLogo from "@/app/components/TodoHiveLogo";
 import Link from "next/link";
 import React from "react";
 
@@ -55,7 +55,7 @@ const Dashboard: React.FC<DashboardProps> = async () => {
           <div key={index}>
             {item.userId}
             <br />
-            {item.title} {/* Display the title of the item */}
+            {item.title}
           </div>
         ))}
     </main>
