@@ -1,28 +1,33 @@
+"use client";
+import { useState } from "react";
+import React, { useEffect } from "react";
+
+import {
+  setTodos,
+  selectTodos,
+  selectStatus,
+} from "@/lib/features/todos/todosSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+
 import TodoHiveLogo from "@/app/components/TodoHiveLogo";
 import Link from "next/link";
-import React from "react";
+import TodoCard from "../components/TodoCard";
 
 interface DashboardProps {}
 
-interface Todo {
-  userId: number;
-  id: number;
-  title: string;
-  completed: boolean;
-}
+export default function Dashboard() {
+  const dispatch = useAppDispatch();
+  const todos = useAppSelector(selectTodos);
+  const status = useAppSelector(selectStatus);
 
-async function getData(): Promise<Todo[]> {
-  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+  useEffect(() => {
+    const savedTodos = localStorage.getItem("todos");
+    console.log(savedTodos);
+    if (savedTodos) {
+      dispatch(setTodos(JSON.parse(savedTodos)));
+    }
+  }, [dispatch]);
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  return res.json();
-}
-
-const Dashboard: React.FC<DashboardProps> = async () => {
-  const data = await getData();
   return (
     <main
       style={{
@@ -50,16 +55,60 @@ const Dashboard: React.FC<DashboardProps> = async () => {
           </span>
         </span>
       </div>
-      {data &&
-        data.map((item: Todo, index: number) => (
-          <div key={index}>
-            {item.userId}
-            <br />
-            {item.title}
+
+      <button
+        onClick={() => {
+          console.log("Button Clicked");
+          const data = todos;
+          console.log(data[0]);
+        }}
+      >
+        Button Text
+      </button>
+
+      <div style={{ display: "flex" }}>
+        <div>
+          <div style={{ textAlign: "left", marginBottom: 10, marginLeft: 10 }}>
+            <span>Activity To Do</span>
           </div>
-        ))}
+          <div
+            style={{
+              overflow: "auto",
+              height: "300px",
+            }}
+          >
+            {/* {data &&
+              data.map((item: Todo) => (
+                <TodoCard
+                  key={item.id}
+                  title={item.title}
+                  completed={item.completed}
+                />
+              ))} */}
+          </div>
+        </div>
+        <div style={{ margin: 20 }}></div>
+        <div>
+          <div style={{ textAlign: "left", marginBottom: 10, marginLeft: 10 }}>
+            <span>Activity Completed</span>
+          </div>
+          <div
+            style={{
+              overflow: "auto",
+              height: "300px",
+            }}
+          >
+            {/* {data &&
+              data.map((item: Todo) => (
+                <TodoCard
+                  key={item.id}
+                  title={item.title}
+                  completed={item.completed}
+                />
+              ))} */}
+          </div>
+        </div>
+      </div>
     </main>
   );
-};
-
-export default Dashboard;
+}

@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { StoreProvider } from "./StoreProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "TodoHive | by Effry Muhammad for PT Sat Nusapersada Take Home Test",
+  title: "TodoHive",
   description: "Innovative, user-friendly, and easy.",
 };
 
@@ -15,8 +16,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <StoreProvider>
+      <html lang="en">
+        <head></head>
+        <body className={inter.className}>{children}</body>
+      </html>
+    </StoreProvider>
   );
 }

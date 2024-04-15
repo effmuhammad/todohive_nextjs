@@ -1,0 +1,14 @@
+.radioButton {
+    border-radius: 50%;
+    border: 3px solid #959595;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+}
+
+.radioButton:hover {
+    /* border: 5px solid #959595; */
+    width: 20px;
+    height: 20px;
+    box-shadow: 0px 0px 0px 5px #9fffb8;
+}

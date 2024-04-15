@@ -37,6 +37,7 @@ export default function Home() {
           </span>
         </button>
       </Link>
+
       <FooterText />
     </main>
   );
