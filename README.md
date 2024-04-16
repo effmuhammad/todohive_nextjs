@@ -20,6 +20,14 @@ This project was created as a result of the take home test assignment for PT Sat
 First, run the development server:
 
 ```bash
+npm install
+# or
+yarn install
+```
+
+then,
+
+```bash
 npm run dev
 # or
 yarn dev
