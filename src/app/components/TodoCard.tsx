@@ -5,9 +5,18 @@ import styles from "./TodoCard.module.css";
 interface TodoCardProps {
   title: string;
   completed: boolean;
+  onToggleCompleted: () => void;
+  onEdit: () => void;
+  onDelete: () => void;
 }
 
-const TodoCard: React.FC<TodoCardProps> = ({ title, completed }) => {
+const TodoCard: React.FC<TodoCardProps> = ({
+  title,
+  completed,
+  onToggleCompleted,
+  onEdit,
+  onDelete,
+}) => {
   return (
     <div
       className={`p-5 rounded-xl flex items-center justify-left border-2 ${
@@ -21,10 +30,23 @@ const TodoCard: React.FC<TodoCardProps> = ({ title, completed }) => {
         justifyContent: "space-between",
       }}
     >
-      <button
-        title="Mark Todo Activity as Completed"
-        className={styles.radioButton}
-      ></button>
+      {!completed && (
+        <button
+          title="Mark Todo Activity as Completed"
+          className={styles.radioButtonNotCompleted}
+          onClick={onToggleCompleted}
+        ></button>
+      )}
+
+      {completed && (
+        <button
+          title="Mark Todo Activity as Not Completed"
+          className={styles.radioButtonCompleted}
+          onClick={onToggleCompleted}
+        >
+          <img src="/icons/ok-icon.png" alt="" />
+        </button>
+      )}
 
       <div
         style={{
@@ -42,10 +64,14 @@ const TodoCard: React.FC<TodoCardProps> = ({ title, completed }) => {
       </div>
       {/* </label> */}
       <div>
-        <button style={{ marginRight: "20px" }} title="Edit Todo Activity">
+        <button
+          style={{ marginRight: "20px" }}
+          title="Edit Todo Activity"
+          onClick={onEdit}
+        >
           <Image src="icons/edit.svg" alt="edit todo" width="15" height="15" />
         </button>
-        <button title="Delete Todo Activity">
+        <button title="Delete Todo Activity" onClick={onDelete}>
           <Image
             src="icons/trash.svg"
             alt="delete todo"
