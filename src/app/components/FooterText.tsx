@@ -18,7 +18,7 @@ const FooterText: React.FC = ({}) => {
         by Effry Muhammad for PT Sat Nusapersada Take Home Test
         <br />
         <span style={{ fontSize: 12 }}>
-          design by Varun Gupta on Figma Community
+          design inspiration from Varun Gupta on Figma Community
         </span>
       </span>
     </div>
