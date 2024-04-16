@@ -1,5 +1,5 @@
 import { render, fireEvent } from "@testing-library/react";
-import TodoCard from "../components/TodoCard";
+import TodoCard from "../src/app/components/TodoCard";
 
 test("renders the todo card", () => {
   const mockOnToggleCompleted = jest.fn();
